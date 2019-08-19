@@ -12,3 +12,4 @@ def rating(request):
     date = request.GET.get('date', None)
 
     rating = Rating.object.all()
+    

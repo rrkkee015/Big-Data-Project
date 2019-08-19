@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user')
     gender = models.CharField(max_length=10, default='M')
     age = models.IntegerField(default=25)
     occupation = models.CharField(max_length=200)
@@ -38,8 +38,8 @@ class Movie(models.Model):
         return self.genres.strip().split('|')
 
 class Rating(models.Model):
-    movie = models.ForeignKey(Movie, on_delete = models.CASCADE, related_name = "rating")
-    user = models.ForeignKey(Profile, on_delete = models.CASCADE, related_name = "user")
+    movie = models.ForeignKey(Movie, on_delete = models.CASCADE, related_name = 'rating')
+    user = models.ForeignKey(Profile, on_delete = models.CASCADE, related_name = 'rating')
     rating = models.IntegerField(
         validators = [
             MaxValueValidator(5),

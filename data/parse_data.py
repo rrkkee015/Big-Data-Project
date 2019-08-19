@@ -49,20 +49,20 @@ def create_movies():
             'title': title,
             'genres': genres
         })
-
+    
     response = requests.post(API_URL + 'movies/', data=json.dumps(request_data), headers=headers)
     print(response.text)
 
 
 def create_ratings(num_users):
-    rating_data = open('./rating.dat', 'r', encoding='ISO-8859-1')
+    rating_data = open('./ratings.dat', 'r', encoding='ISO-8859-1')
     request_data = {'rating': []}
     for line in rating_data.readlines():
         [userid, movieid, rating, timestamp] = line.split('::')
         username = 'user' + userid
         movieid = int(movieid)
         rating = int(rating)
-        timestamp = datetime.fromtimestamp(timestamp) # 2019-08-19 15:21:09
+        timestamp = str(datetime.fromtimestamp(float(timestamp))) # 2019-08-19 15:21:09
         request_data['rating'].append({
             'movieid' : movieid,
             'username' : username,
@@ -70,6 +70,10 @@ def create_ratings(num_users):
             'date' : timestamp
         })
 
+        if len(request_data['rating']) >= num_users:
+            break
+
+    print(json.dumps(request_data))
     response = requests.post(API_URL + 'rating/', data=json.dumps(request_data), headers=headers)
     print(response.text)
 
