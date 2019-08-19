@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -36,3 +36,15 @@ class Movie(models.Model):
     @property
     def genres_array(self):
         return self.genres.strip().split('|')
+
+class Rating(models.Model):
+    movie = models.ForeignKey(Movie, on_delete = models.CASCADE, related_name = "rating")
+    user = models.ForeignKey(Profile, on_delete = models.CASCADE, related_name = "user")
+    rating = models.IntegerField(
+        validators = [
+            MaxValueValidator(5),
+            MinValueValidator(1)
+        ],
+        default = 5
+    )
+    time = models.DateTimeField()

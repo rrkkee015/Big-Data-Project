@@ -60,12 +60,12 @@ def create_ratings(num_users):
     for line in rating_data.readlines():
         [userid, movieid, rating, timestamp] = line.split('::')
         username = 'user' + userid
-        movieid = int(rating)
+        movieid = int(movieid)
         rating = int(rating)
-        timestamp = datetime.fromtimestamp(timestamp)
+        timestamp = datetime.fromtimestamp(timestamp) # 2019-08-19 15:21:09
         request_data['rating'].append({
-            'userid' : username,
             'movieid' : movieid,
+            'username' : username,
             'rating' : rating,
             'date' : timestamp
         })
