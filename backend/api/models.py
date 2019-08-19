@@ -38,13 +38,13 @@ class Movie(models.Model):
         return self.genres.strip().split('|')
 
 class Rating(models.Model):
-    movie = models.ForeignKey(Movie, on_delete = models.CASCADE, related_name = 'rating')
-    user = models.ForeignKey(Profile, on_delete = models.CASCADE, related_name = 'rating')
-    rating = models.IntegerField(
+    movie = models.ForeignKey(Movie, on_delete = models.CASCADE, related_name = 'ratings')
+    user = models.ForeignKey(Profile, on_delete = models.CASCADE, related_name = 'ratings')
+    score = models.IntegerField(
         validators = [
             MaxValueValidator(5),
             MinValueValidator(1)
         ],
         default = 5
     )
-    time = models.DateTimeField()
+    date = models.DateTimeField()
