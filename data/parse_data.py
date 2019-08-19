@@ -1,6 +1,8 @@
 import requests
 import json
 
+from datetime import datetime
+
 API_URL = 'http://localhost:8000/api/'
 headers = {'content-type': 'application/json'}
 
@@ -53,7 +55,23 @@ def create_movies():
 
 
 def create_ratings(num_users):
-    pass
+    rating_data = open('./rating.dat', 'r', encoding='ISO-8859-1')
+    request_data = {'rating': []}
+    for line in rating_data.readlines():
+        [userid, movieid, rating, timestamp] = line.split('::')
+        username = 'user' + userid
+        movieid = int(rating)
+        rating = int(rating)
+        timestamp = datetime.fromtimestamp(timestamp)
+        request_data['rating'].append({
+            'userid' : username,
+            'movieid' : movieid,
+            'rating' : rating,
+            'date' : timestamp
+        })
+
+    response = requests.post(API_URL + 'rating/', data=json.dumps(request_data), headers=headers)
+    print(response.text)
 
 
 if __name__ == '__main__':
