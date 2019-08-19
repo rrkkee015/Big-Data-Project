@@ -8,6 +8,8 @@ class Profile(models.Model):
     age = models.IntegerField(default=25)
     occupation = models.CharField(max_length=200)
 
+    def __str__(self):
+        return 'user : {}'.format(self.user)
 
 #  wrapper for create user Profile
 def create_profile(**kwargs):
@@ -37,6 +39,9 @@ class Movie(models.Model):
     def genres_array(self):
         return self.genres.strip().split('|')
 
+    def __str__(self):
+        return self.title
+
 class Rating(models.Model):
     movie = models.ForeignKey(Movie, on_delete = models.CASCADE, related_name = 'ratings')
     user = models.ForeignKey(Profile, on_delete = models.CASCADE, related_name = 'ratings')
@@ -48,3 +53,6 @@ class Rating(models.Model):
         default = 5
     )
     date = models.DateTimeField()
+
+    def __str__(self):
+        return '영화 : {} 평점 : {} 작성자 : {}'.format(self.movie, self.score, self.user)
