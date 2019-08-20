@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db.models import Avg
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user')
@@ -33,10 +34,14 @@ class Movie(models.Model):
     id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=200)
     genres = models.CharField(max_length=500)
-
+    
     @property
     def genres_array(self):
         return self.genres.strip().split('|')
+
+    @property
+    def score_average(self):
+        return self.ratings.aggregate(Avg('score')).get('score__avg')
 
     def __str__(self):
         return self.title
