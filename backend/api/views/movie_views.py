@@ -12,7 +12,7 @@ def movies(request):
     id = request.GET.get('id', request.GET.get('movie_id', None))
     title = request.GET.get('title', None)
     genre = request.GET.get('genre', None)
-
+    
     movies = Movie.objects.all()
 
     if id:
@@ -20,7 +20,7 @@ def movies(request):
     if title:
       movies = movies.filter(title__icontains=title)
     if genre:
-      movies = movies.filter(genre__icontains=genre)
+      movies = movies.filter(genres__icontains=genre)
 
     serializer = MovieSerializer(movies, many=True)
     return Response(data=serializer.data, status=status.HTTP_200_OK)

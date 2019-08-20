@@ -5,7 +5,7 @@
       <!-- 검색 폼 -->
       <v-flex xs6>
         <div class="display-2 pa-10">장르 검색</div>
-        <GenreSearchForm :submit="searchGenres" />
+        <GenreSearchForm :submit="searchMovies" />
       </v-flex>
       <!-- 검색 결과 -->
       <v-flex xs7>
@@ -30,6 +30,6 @@ export default {
       movieList: state => state.data.movieSearchList
     })
   },
-  methods: mapActions("data", ["searchGenres"])
+  methods: mapActions("data", ["searchMovies"])
 };
 </script>

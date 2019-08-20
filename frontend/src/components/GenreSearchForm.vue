@@ -1,6 +1,6 @@
 <template>
   <v-form ref="form">
-    <v-text-field v-model="title" label="장르 제목" />
+    <v-text-field v-model="genre" label="장르 제목" />
     <v-layout justify-center pa-10>
       <v-btn large color="indigo white--text" @click="onSubmit">Search</v-btn>
     </v-layout>
@@ -16,6 +16,7 @@ export default {
     }
   },
   data: () => ({
+    title: "",
     genre: ""
   }),
   methods: {

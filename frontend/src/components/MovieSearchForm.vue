@@ -16,7 +16,8 @@ export default {
     }
   },
   data: () => ({
-    title: ""
+    title: "",
+    genre: ""
   }),
   methods: {
     onSubmit: function() {
