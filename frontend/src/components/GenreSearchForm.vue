@@ -22,7 +22,10 @@ export default {
   data: () => ({
     title: "",
     genre: "",
-    items: ['Action', 'Adventure', 'Animation', 'Children\'s', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Fantasy', 'Film-Noir', 'Horror', 'Musical', 'Mystry', 'Romance', 'Sci-Fi', 'Thriller', 'War', 'Western']
+    items: ['Action', 'Adventure', 'Animation', 'Children\'s', 'Comedy', 
+    'Crime', 'Documentary', 'Drama', 'Fantasy', 'Film-Noir', 
+    'Horror', 'Musical', 'Mystry', 'Romance', 'Sci-Fi', 
+    'Thriller', 'War', 'Western']
   }),
   methods: {
     onSubmit: function() {
