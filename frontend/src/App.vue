@@ -50,6 +50,11 @@ export default {
         icon: "mdi-movie",
         text: "영화 검색",
         path: "movie-search"
+      },
+      {
+        icon: "mdi-library-movie",
+        text: "장르 검색",
+        path: "genre-search"
       }
     ]
   }),
