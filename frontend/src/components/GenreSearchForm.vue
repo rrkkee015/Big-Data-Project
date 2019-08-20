@@ -1,6 +1,10 @@
 <template>
   <v-form ref="form">
-    <v-text-field v-model="genre" label="장르 제목" />
+    <v-select
+      v-model="genre"
+      :items="items"
+      label="Genre"
+    />
     <v-layout justify-center pa-10>
       <v-btn large color="indigo white--text" @click="onSubmit">Search</v-btn>
     </v-layout>
@@ -17,7 +21,8 @@ export default {
   },
   data: () => ({
     title: "",
-    genre: ""
+    genre: "",
+    items: ['Action', 'Adventure', 'Animation', 'Children\'s', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Fantasy', 'Film-Noir', 'Horror', 'Musical', 'Mystry', 'Romance', 'Sci-Fi', 'Thriller', 'War', 'Western']
   }),
   methods: {
     onSubmit: function() {
