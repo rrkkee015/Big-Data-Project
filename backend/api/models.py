@@ -9,7 +9,7 @@ class Profile(models.Model):
     occupation = models.CharField(max_length=200)
 
     def __str__(self):
-        return 'user : {}'.format(self.user)
+        return '{}'.format(self.user)
 
 #  wrapper for create user Profile
 def create_profile(**kwargs):
@@ -28,7 +28,6 @@ def create_profile(**kwargs):
     )
 
     return profile
-
 
 class Movie(models.Model):
     id = models.IntegerField(primary_key=True)

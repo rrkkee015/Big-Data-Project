@@ -9,7 +9,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ('id', 'username', 'is_staff', 'gender', 'age', 'occupation', 'scores')
+        fields = '__all__'
 
     def get_username(self, obj):
         return obj.user.username
@@ -20,12 +20,15 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 class MovieSerializer(serializers.ModelSerializer):
     genres_array = serializers.ReadOnlyField()
-
+    
     class Meta:
         model = Movie
-        fields = ('id', 'title', 'genres_array', 'scores')
+        fields = '__all__'
 
 class RatingSerializer(serializers.ModelSerializer):
+    movie = serializers.CharField()
+    user = serializers.CharField()
+
     class Meta:
         model = Rating
-        fields = ('movie', 'user', 'score', 'date')
+        fields = '__all__'
