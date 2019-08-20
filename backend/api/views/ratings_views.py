@@ -8,6 +8,7 @@ from rest_framework.response import Response
 def ratings(request):
 
   if request.method == 'GET':
+    id = request.GET.get('id', None)
     movie = request.GET.get('movieid', None)
     user = request.GET.get('userid', None)
     score = request.GET.get('score', None)

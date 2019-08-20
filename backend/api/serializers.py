@@ -26,9 +26,18 @@ class MovieSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class RatingSerializer(serializers.ModelSerializer):
-    movie = serializers.CharField()
-    user = serializers.CharField()
+    # movie = serializers.CharField()
+    # user = serializers.CharField()
+
+    movie = serializers.SerializerMethodField('get_movie')
+    user = serializers.SerializerMethodField('get_username')
 
     class Meta:
         model = Rating
         fields = '__all__'
+
+    def get_username(self, obj):
+        return obj.user.user.username
+
+    def get_movie(self, obj):
+        return obj.movie.title
