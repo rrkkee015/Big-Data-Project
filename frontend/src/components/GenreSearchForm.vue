@@ -3,7 +3,7 @@
     <v-select
       v-model="genre"
       :items="items"
-      label="Genre"
+      label="장르"
     />
     <v-layout justify-center pa-10>
       <v-btn large color="indigo white--text" @click="onSubmit">Search</v-btn>
