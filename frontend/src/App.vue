@@ -47,6 +47,11 @@ export default {
     drawer: null,
     choices: [
       {
+        icon: "mdi-home",
+        text: "홈",
+        path: "home"
+      },
+      {
         icon: "mdi-movie",
         text: "영화 검색",
         path: "movie-search"
