@@ -60,6 +60,11 @@ export default {
         icon: "mdi-library-movie",
         text: "장르 검색",
         path: "genre-search"
+      },
+      {
+        icon: "mdi-account",
+        text: "유저",
+        path: "accounts"
       }
     ]
   }),
