@@ -1,8 +1,8 @@
 <template>
   <v-container class="pa-2" fluid grid-list-md>
     <v-layout justify-end>
-      <v-btn v-model="rating_order" text color="primary" v-show="this.movieListCards.length" @click="order_by_rating()">평점 순</v-btn>
-      <v-btn v-model="view_order" text color="primary" v-show="this.movieListCards.length" @click="order_by_view()">조회 순</v-btn>
+      <v-btn v-show="movieListCards.length" v-model="rating_order" text color="primary" @click="order_by_rating()">평점 순</v-btn>
+      <v-btn v-show="movieListCards.length" v-model="view_order" text color="primary" @click="order_by_view()">조회 순</v-btn>
     </v-layout>
     <v-layout column>
       <v-flex v-for="card in movieListCardsSliced" :key="card.id" pa-2>
@@ -38,16 +38,6 @@ export default {
     rating_order: false,
     view_order: false
   }),
-  methods: {
-    order_by_view () {
-      this.view_order = !this.view_order
-      this.rating_order = false
-    },
-    order_by_rating () {
-      this.rating_order = !this.rating_order
-      this.view_order = false
-    }
-  },
   computed: {
     // pagination related variables
     movieListEmpty: function() {
@@ -57,16 +47,16 @@ export default {
       return Math.floor((this.movieListCards.length + this.cardsPerPage - 1) / this.cardsPerPage)
     },
     movieListCardsSliced: function() {
-      if (this.rating_order == true) {
-        return this.movieListCards.sort((a, b) => a.rating > b.rating ? -1 : a.rating < b.rating ? 1 : 0).slice(this.cardsPerPage * (this.page - 1), this.cardsPerPage * this.page)
-      }
-      else if (this.view_order) {
-        return this.movieListCards.sort((a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0).slice(this.cardsPerPage * (this.page - 1), this.cardsPerPage * this.page)
-      }
-      else {
-        return this.movieListCards.slice(this.cardsPerPage * (this.page - 1), this.cardsPerPage * this.page)
-      }
+      return this.movieListCards.slice(this.cardsPerPage * (this.page - 1), this.cardsPerPage * this.page)
     },
   },
+  methods: {
+    order_by_view () {
+      return this.movieListCards.sort((a, b) => a.rating > b.rating ? -1 : a.rating < b.rating ? 1 : 0)
+    },
+    order_by_rating () {
+      return this.movieListCards.sort((a, b) => a.rating > b.rating ? -1 : a.rating < b.rating ? 1 : 0)
+    }
+  }
 };
 </script>

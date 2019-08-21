@@ -8,4 +8,7 @@ export default {
       params,
     })
   },
+  searchAccounts() {
+    return axios.get(`${apiUrl}/profiles/`)
+  }
 }
