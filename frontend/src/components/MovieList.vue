@@ -45,7 +45,7 @@ export default {
       return Math.floor((this.movieListCards.length + this.cardsPerPage - 1) / this.cardsPerPage)
     },
     movieListCardsSliced: function() {
-      return this.movieListCards.slice(this.cardsPerPage * (this.page - 1), this.cardsPerPage * this.page)
+      return this.movieListCards.sort((a, b) => a.rating > b.rating ? -1 : a.rating < b.rating ? 1 : 0).slice(this.cardsPerPage * (this.page - 1), this.cardsPerPage * this.page)
     },
   },
 };
