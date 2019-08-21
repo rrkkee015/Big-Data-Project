@@ -40,8 +40,8 @@ class Movie(models.Model):
         return self.genres.strip().split('|')
 
     @property
-    def score_average(self):
-        return self.ratings.aggregate(Avg('score')).get('score__avg')
+    def average_rating(self):
+        return self.ratings.aggregate(Avg('score')).get('score__avg') if self.ratings.aggregate(Avg('score')).get('score__avg') else 0.0
 
     def __str__(self):
         return self.title

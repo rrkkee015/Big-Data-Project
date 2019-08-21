@@ -36,7 +36,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 class MovieSerializer(serializers.ModelSerializer):
     genres_array = serializers.ReadOnlyField()
-    score_average = serializers.ReadOnlyField()
+    average_rating = serializers.ReadOnlyField()
 
     class Meta:
         model = Movie
