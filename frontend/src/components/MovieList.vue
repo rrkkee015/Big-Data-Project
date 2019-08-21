@@ -1,5 +1,9 @@
 <template>
   <v-container class="pa-2" fluid grid-list-md>
+    <v-layout justify-end>
+      <v-btn text color="primary" v-show="this.movieListCards.length">평점 순</v-btn>
+      <v-btn text color="primary" v-show="this.movieListCards.length">조회 순</v-btn>
+    </v-layout>
     <v-layout column>
       <v-flex v-for="card in movieListCardsSliced" :key="card.id" pa-2>
         <MovieListCard
