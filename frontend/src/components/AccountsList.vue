@@ -30,11 +30,11 @@ export default {
   computed: {
     ...mapState("data",["accountList"])
   },
-  methods: {
-    ...mapActions("data", { setUser: 'searchAccounts'}),
-  },
   mounted() {
     this.setUser()
+  },
+  methods: {
+    ...mapActions("data", { setUser: 'searchAccounts'}),
   }
 }
 </script>

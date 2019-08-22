@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-hover v-slot:default="{ hover }">
-      <v-card @click="toggleDialog()" :elevation="hover ? 8 : 2">
+      <v-card :elevation="hover ? 8 : 2" @click="toggleDialog()">
         <v-layout align-center py-4 pl-4>
           <v-flex text-center>
             <v-container grid-list-lg pa-0>
@@ -40,7 +40,7 @@
     >
       <MovieDetail 
         :title="title"
-        :viewCnt="viewCnt"
+        :viewcnt="viewCnt"
         @turnOff="dialog=false"
       />
     </v-dialog>
@@ -53,11 +53,6 @@ import MovieDetail from './MovieDetail'
 export default {
   components: {
     MovieDetail
-  },
-  data() {
-    return {
-      dialog: false
-    }
   },
   props: {
     id: {
@@ -83,6 +78,11 @@ export default {
     viewCnt: {
       type: Number,
       default: 0
+    }
+  },
+  data() {
+    return {
+      dialog: false
     }
   },
   computed: {
