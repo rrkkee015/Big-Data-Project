@@ -27,12 +27,6 @@
                     <div class="grey--text ml-4">{{ rating.toFixed(1) }}</div>
                   </v-layout>
                 </v-card-text>
-                <v-card-text>
-                  <v-layout justify-center>
-                    <v-icon color="black">mdi-eye</v-icon>
-                    <div class="grey--text ml-4">{{ viewCnt }}</div>
-                  </v-layout>
-                </v-card-text>
               </v-layout>
             </v-container>
           </v-flex>
@@ -41,42 +35,25 @@
     </v-hover>
     <v-dialog
       v-model="dialog"
-      max-width="500"
+      max-width="1000"
       persistent
     >
-      <v-card>
-        <v-card-title class="headline">{{ title }}</v-card-title>
-         
-        <v-card-text>
-          동해물과 백두산이 마르고 닳도록 하느님이 보우하사 길이보전하세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
-        </v-card-text>
-        <v-card-actions>
-          <div class="flex-grow=1"></div>
-
-          <v-btn
-            color="green darken-1"
-            text
-            @click="dialog = false"
-          >
-            Disagree
-          </v-btn>
-
-          <v-btn
-            color="green darken-1"
-            text
-            @click="dialog = false"
-          >
-            Agree
-          </v-btn>
-        </v-card-actions>
-      </v-card>
+      <MovieDetail 
+        :title="title"
+        :viewCnt="viewCnt"
+        @turnOff="dialog=false"
+      />
     </v-dialog>
   </div>
 </template>
 
 <script>
+import MovieDetail from './MovieDetail'
 
 export default {
+  components: {
+    MovieDetail
+  },
   data() {
     return {
       dialog: false
@@ -116,6 +93,9 @@ export default {
   methods: {
     toggleDialog() {
       this.dialog = !this.dialog
+    },
+    getImgUrl(img) {
+      return require('@/assets/' + img)
     }
   }
 };
