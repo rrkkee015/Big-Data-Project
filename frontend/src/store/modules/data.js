@@ -21,8 +21,9 @@ const actions = {
 
     commit('setMovieSearchList', movies)
   },
-  async searchAccounts({ commit }, params) {
-    const resp = await api.searchAccounts(params)
+  async searchAccounts({ commit }) {
+    const resp = await api.searchAccounts()
+    console.log(resp)
     const accounts = resp.data.map(d => ({
       user: d.user,
       username: d.username,
