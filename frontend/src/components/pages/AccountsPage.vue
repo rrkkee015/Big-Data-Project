@@ -5,5 +5,11 @@
 </template>
 
 <script>
-export default {}
+import { mapActions } from "vuex";
+
+export default {
+  mounted() {
+    mapActions("data", [""])
+  }
+}
 </script>

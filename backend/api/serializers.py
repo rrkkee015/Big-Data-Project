@@ -1,7 +1,21 @@
 from .models import Profile, Movie, Rating
 from rest_framework import serializers
 
-class RatingSerializer(serializers.ModelSerializer):
+class DynamicFieldsModelSerializer(serializers.ModelSerializer):
+
+    def __init__(self, *args, **kwargs):
+        fields = kwargs.pop('fields', None)
+
+        super(DynamicFieldsModelSerializer, self).__init__(*args, **kwargs)
+
+        if fields is not None:
+            allowed = set(fields)
+            existing = set(self.fields.keys())
+            for field_name in existing - allowed:
+                self.fields.pop(field_name)
+
+
+class RatingSerializer(DynamicFieldsModelSerializer):
     # movie = serializers.CharField()
     # user = serializers.CharField()
 
@@ -18,10 +32,12 @@ class RatingSerializer(serializers.ModelSerializer):
     def get_movie(self, obj):
         return obj.movie.title
 
-class ProfileSerializer(serializers.ModelSerializer):
+class ProfileSerializer(DynamicFieldsModelSerializer):
     id = serializers.ReadOnlyField()
     username = serializers.SerializerMethodField('get_username')
     is_staff = serializers.SerializerMethodField('get_is_staff')
+    rating_fields = ['score', 'movie']
+    ratings = RatingSerializer(many=True, fields=rating_fields, read_only=True)
 
     class Meta:
         model = Profile
@@ -34,7 +50,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         return obj.user.is_staff
 
 
-class MovieSerializer(serializers.ModelSerializer):
+class MovieSerializer(DynamicFieldsModelSerializer):
     genres_array = serializers.ReadOnlyField()
     average_rating = serializers.ReadOnlyField()
 
