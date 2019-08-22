@@ -1,48 +1,87 @@
 <template>
-  <v-hover v-slot:default="{ hover }">
-    <v-card :elevation="hover ? 8 : 2">
-      <v-layout align-center py-4 pl-4>
-        <v-flex text-center>
-          <v-container grid-list-lg pa-0>
-            <v-layout column>
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title class="headline">
-                    {{ title }}
-                  </v-list-item-title>
-                  <v-list-item-subtitle>{{ genresStr }}</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-              <v-card-text>
-                <v-layout justify-center>
-                  <v-rating
-                    :value="rating"
-                    color="indigo"
-                    background-color="indigo"
-                    half-increments
-                    dense
-                    readonly
-                  />
-                  <div class="grey--text ml-4">{{ rating.toFixed(1) }}</div>
-                </v-layout>
-              </v-card-text>
-              <v-card-text>
-                <v-layout justify-center>
-                  <v-icon color="black">mdi-eye</v-icon>
-                  <div class="grey--text ml-4">{{ viewCnt }}</div>
-                </v-layout>
-              </v-card-text>
-            </v-layout>
-          </v-container>
-        </v-flex>
-      </v-layout>
-    </v-card>
-  </v-hover>
+  <div>
+    <v-hover v-slot:default="{ hover }">
+      <v-card @click="toggleDialog()" :elevation="hover ? 8 : 2">
+        <v-layout align-center py-4 pl-4>
+          <v-flex text-center>
+            <v-container grid-list-lg pa-0>
+              <v-layout column>
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title class="headline">
+                      {{ title }}
+                    </v-list-item-title>
+                    <v-list-item-subtitle>{{ genresStr }}</v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-card-text>
+                  <v-layout justify-center>
+                    <v-rating
+                      :value="rating"
+                      color="indigo"
+                      background-color="indigo"
+                      half-increments
+                      dense
+                      readonly
+                    />
+                    <div class="grey--text ml-4">{{ rating.toFixed(1) }}</div>
+                  </v-layout>
+                </v-card-text>
+                <v-card-text>
+                  <v-layout justify-center>
+                    <v-icon color="black">mdi-eye</v-icon>
+                    <div class="grey--text ml-4">{{ viewCnt }}</div>
+                  </v-layout>
+                </v-card-text>
+              </v-layout>
+            </v-container>
+          </v-flex>
+        </v-layout>
+      </v-card>
+    </v-hover>
+    <v-dialog
+      v-model="dialog"
+      max-width="500"
+      persistent
+    >
+      <v-card>
+        <v-card-title class="headline">{{ title }}</v-card-title>
+         
+        <v-card-text>
+          동해물과 백두산이 마르고 닳도록 하느님이 보우하사 길이보전하세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        </v-card-text>
+        <v-card-actions>
+          <div class="flex-grow=1"></div>
+
+          <v-btn
+            color="green darken-1"
+            text
+            @click="dialog = false"
+          >
+            Disagree
+          </v-btn>
+
+          <v-btn
+            color="green darken-1"
+            text
+            @click="dialog = false"
+          >
+            Agree
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
 
 export default {
+  data() {
+    return {
+      dialog: false
+    }
+  },
   props: {
     id: {
       type: Number,
@@ -73,6 +112,11 @@ export default {
     genresStr: function() {
       return this.genres.join(" / ");
     },
+  },
+  methods: {
+    toggleDialog() {
+      this.dialog = !this.dialog
+    }
   }
 };
 </script>

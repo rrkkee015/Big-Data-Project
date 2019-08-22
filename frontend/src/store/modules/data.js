@@ -4,7 +4,8 @@ import api from '../../api'
 const state = {
   // shape: [{ id, title, genres, viewCnt, rating }]
   movieSearchList: [],
-  accountList: [],
+  // shape: [{ id, username, is_staff, ratings, gender, age, occupation, user}]
+  accountList: []
 }
 
 // actions
@@ -23,17 +24,17 @@ const actions = {
   },
   async searchAccounts({ commit }) {
     const resp = await api.searchAccounts()
-    console.log(resp)
     const accounts = resp.data.map(d => ({
       user: d.user,
       username: d.username,
       gender: d.gender,
       occupation: d.occupation,
-      age: d.age
+      age: d.age,
+      ratings: d.ratings
     }))
 
     commit('setAccountsList', accounts)
-  }
+  },
 }
 
 // mutations

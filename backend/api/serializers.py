@@ -36,7 +36,7 @@ class ProfileSerializer(DynamicFieldsModelSerializer):
     id = serializers.ReadOnlyField()
     username = serializers.SerializerMethodField('get_username')
     is_staff = serializers.SerializerMethodField('get_is_staff')
-    rating_fields = ['score', 'movie']
+    rating_fields = ['id', 'score', 'movie']
     ratings = RatingSerializer(many=True, fields=rating_fields, read_only=True)
 
     class Meta:

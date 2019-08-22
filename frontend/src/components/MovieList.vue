@@ -1,8 +1,8 @@
 <template>
   <v-container class="pa-2" fluid grid-list-md>
     <v-layout justify-end>
-      <v-btn v-show="movieListCards.length" v-model="rating_order" text color="primary" @click="order_by_rating()">평점 순</v-btn>
-      <v-btn v-show="movieListCards.length" v-model="view_order" text color="primary" @click="order_by_view()">조회 순</v-btn>
+      <v-btn v-show="movieListCards.length" text color="primary" @click="order_by_rating()">평점 순</v-btn>
+      <v-btn v-show="movieListCards.length" text color="primary" @click="order_by_view()">조회 순</v-btn>
     </v-layout>
     <v-layout column>
       <v-flex v-for="card in movieListCardsSliced" :key="card.id" pa-2>
@@ -22,9 +22,11 @@
 
 <script>
 import MovieListCard from "./MovieListCard"
+
 export default {
   components: {
-    MovieListCard
+    MovieListCard,
+    
   },
   props: {
     movieListCards: {
@@ -34,9 +36,7 @@ export default {
   },
   data: () => ({
     cardsPerPage: 10,
-    page: 1,
-    rating_order: false,
-    view_order: false
+    page: 1
   }),
   computed: {
     // pagination related variables

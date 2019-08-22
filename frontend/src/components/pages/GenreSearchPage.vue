@@ -26,8 +26,8 @@ export default {
   },
   data: () => ({}),
   computed: {
-    ...mapState({
-      movieList: state => state.data.movieSearchList
+    ...mapState("data", {
+      movieList: 'movieSearchList'
     })
   },
   methods: mapActions("data", ["searchMovies"])
