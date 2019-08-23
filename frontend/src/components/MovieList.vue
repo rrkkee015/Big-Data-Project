@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     order_by_view () {
-      return this.movieListCards.sort((a, b) => a.averageRating > b.averageRating ? -1 : a.averageRating < b.averageRating ? 1 : 0)
+      return this.movieListCards.sort((a, b) => a.viewCount > b.viewCount ? -1 : a.viewCount < b.viewCount ? 1 : 0)
     },
     order_by_rating () {
       return this.movieListCards.sort((a, b) => a.averageRating > b.averageRating ? -1 : a.averageRating < b.averageRating ? 1 : 0)
