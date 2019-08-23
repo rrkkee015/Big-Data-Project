@@ -10,7 +10,19 @@
         <v-card-text>
           {{ genresStr }}
         </v-card-text>
-        
+
+        <v-layout justify-center>
+          <v-rating
+            :value="averageRating"
+            color="indigo"
+            background-color="indigo"
+            half-increments
+            dense
+            readonly
+          />
+          <div class="grey--text ml-4">{{ averageRating.toFixed(1) }}</div>
+        </v-layout>
+
         <v-card-text>
           영화 본 사람들
         </v-card-text>
@@ -47,7 +59,7 @@ export default {
     },
     viewCount: {
       type: Number,
-
+      deafult: 0
     },
     genresStr: {
       type: String,
@@ -56,6 +68,10 @@ export default {
     users: {
       type: Array,
       deafult: []
+    },
+    averageRating: {
+      type: Number,
+      deafult: 0.0
     }
   },
   methods: {
