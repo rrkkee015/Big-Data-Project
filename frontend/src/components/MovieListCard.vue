@@ -40,7 +40,9 @@
     >
       <MovieDetail 
         :title="title"
-        :viewcnt="viewCnt"
+        :viewCnt="viewCnt"
+        :genresStr="genresStr"
+        :rating="rating"
         @turnOff="dialog=false"
       />
     </v-dialog>

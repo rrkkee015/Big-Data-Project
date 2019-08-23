@@ -1,12 +1,15 @@
 <template>
   <v-card>
     <v-layout>
-      <v-img class="movie_img" :src="getImgUrl('Toy_story.jpg')">
-      </v-img>
+      <v-img class="movie_img" :src="getImgUrl('Toy_story.jpg')" />
       <v-flex> 
         <v-card-title class="headline">
           {{ title }}
         </v-card-title>    
+
+        <v-card-text>
+          {{ genresStr }}
+        </v-card-text>
 
         <v-card-text>
           <v-layout justify-center>
@@ -20,7 +23,7 @@
         </v-card-text>
         
         <v-card-actions class="card_action justify-end">
-          <v-icon @click="callParents" color="black">mdi-close</v-icon>
+          <v-icon color="black" @click="callParents">mdi-close</v-icon>
         </v-card-actions> 
       </v-flex>
     </v-layout>
@@ -37,6 +40,10 @@ export default {
     viewCnt: {
       type: Number,
       default: 0
+    },
+    genresStr: {
+      type: String,
+      default: ""
     }
   },
   methods: {
