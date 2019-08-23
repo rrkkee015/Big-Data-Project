@@ -16,8 +16,9 @@ const actions = {
       id: d.id,
       title: d.title,
       genres: d.genres_array,
-      viewCnt: d.view_cnt,
-      rating: d.average_rating,
+      viewCount: d.view_cnt,
+      averageRating: d.average_rating,
+      users: d.ratings,
     }))
 
     commit('setMovieSearchList', movies)

@@ -10,11 +10,19 @@
         <v-card-text>
           {{ genresStr }}
         </v-card-text>
+        
+        <v-card-text>
+          영화 본 사람들
+        </v-card-text>
+
+        <v-card-text v-for = "(item, index) in users" :key="item.id">
+          {{ index + 1}}. {{ item.user }}
+        </v-card-text>
 
         <v-card-text>
           <v-layout justify-center>
             <v-icon color="black">mdi-eye</v-icon>
-            <div class="grey--text ml-4">{{ viewCnt }}</div>
+            <div class="grey--text ml-4">{{ viewCount }}</div>
           </v-layout>
         </v-card-text>
 
@@ -37,13 +45,17 @@ export default {
       type: String,
       default: ""
     },
-    viewCnt: {
+    viewCount: {
       type: Number,
-      default: 0
+
     },
     genresStr: {
       type: String,
       default: ""
+    },
+    users: {
+      type: Array,
+      deafult: []
     }
   },
   methods: {

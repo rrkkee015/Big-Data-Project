@@ -53,7 +53,9 @@ class ProfileSerializer(DynamicFieldsModelSerializer):
 class MovieSerializer(DynamicFieldsModelSerializer):
     genres_array = serializers.ReadOnlyField()
     average_rating = serializers.ReadOnlyField()
-
+    rating_fields = ['user']
+    ratings = RatingSerializer(many=True, fields=rating_fields, read_only=True)
+    
     class Meta:
         model = Movie
         fields = '__all__'

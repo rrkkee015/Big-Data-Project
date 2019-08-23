@@ -11,8 +11,9 @@
           :img="card.img"
           :title="card.title"
           :genres="card.genres"
-          :rating="card.rating"
-          :view-cnt="card.viewCnt"
+          :averageRating="card.averageRating"
+          :viewCount="card.viewCount"
+          :users="card.users"
         />
       </v-flex>
       <v-pagination v-if="maxPages > 1" v-model="page" :length="maxPages" />
@@ -52,10 +53,10 @@ export default {
   },
   methods: {
     order_by_view () {
-      return this.movieListCards.sort((a, b) => a.rating > b.rating ? -1 : a.rating < b.rating ? 1 : 0)
+      return this.movieListCards.sort((a, b) => a.averageRating > b.averageRating ? -1 : a.averageRating < b.averageRating ? 1 : 0)
     },
     order_by_rating () {
-      return this.movieListCards.sort((a, b) => a.rating > b.rating ? -1 : a.rating < b.rating ? 1 : 0)
+      return this.movieListCards.sort((a, b) => a.averageRating > b.averageRating ? -1 : a.averageRating < b.averageRating ? 1 : 0)
     }
   }
 };

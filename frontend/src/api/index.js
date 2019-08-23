@@ -10,5 +10,10 @@ export default {
   },
   searchAccounts() {
     return axios.get(`${apiUrl}/profiles/`)
+  },
+  addViewCount(movieid) {
+    return axios.get(`${apiUrl}/movies/`, {
+      params : { id: movieid }
+    })
   }
 }

@@ -17,14 +17,14 @@
                 <v-card-text>
                   <v-layout justify-center>
                     <v-rating
-                      :value="rating"
+                      :value="averageRating"
                       color="indigo"
                       background-color="indigo"
                       half-increments
                       dense
                       readonly
                     />
-                    <div class="grey--text ml-4">{{ rating.toFixed(1) }}</div>
+                    <div class="grey--text ml-4">{{ averageRating.toFixed(1) }}</div>
                   </v-layout>
                 </v-card-text>
               </v-layout>
@@ -40,9 +40,10 @@
     >
       <MovieDetail 
         :title="title"
-        :viewCnt="viewCnt"
+        :viewCount="viewCount"
         :genresStr="genresStr"
-        :rating="rating"
+        :averageRating="averageRating"
+        :users="users"
         @turnOff="dialog=false"
       />
     </v-dialog>
@@ -51,6 +52,8 @@
 
 <script>
 import MovieDetail from './MovieDetail'
+import { mapActions } from 'vuex'
+import api from "../api"
 
 export default {
   components: {
@@ -73,13 +76,17 @@ export default {
       type: String,
       default: ""
     },
-    rating: {
+    averageRating: {
       type: Number,
       default: 0.0
     },
-    viewCnt: {
+    viewCount: {
       type: Number,
-      default: 0
+      default: 0.0
+    },
+    users: {
+      type: Array,
+      default: []
     }
   },
   data() {
@@ -93,7 +100,10 @@ export default {
     },
   },
   methods: {
+    ...mapActions("data", ["searchMovies"]),
     toggleDialog() {
+      api.addViewCount(this.id)
+      this.searchMovies()
       this.dialog = !this.dialog
     },
     getImgUrl(img) {

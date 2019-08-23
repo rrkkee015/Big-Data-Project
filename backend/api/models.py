@@ -34,6 +34,7 @@ class Movie(models.Model):
     id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=200)
     genres = models.CharField(max_length=500)
+    view_cnt = models.IntegerField(default=0)
     
     @property
     def genres_array(self):
@@ -45,6 +46,10 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title
+
+    def addViewCount(self):
+        self.view_cnt += 1
+        self.save()
 
 class Rating(models.Model):
     movie = models.ForeignKey(Movie, on_delete = models.CASCADE, related_name = 'ratings')
