@@ -4,10 +4,8 @@
       v-model="genre"
       :items="items"
       label="장르"
+      @change="onSubmit"
     />
-    <v-layout justify-center pa-10>
-      <v-btn large color="indigo white--text" @click="onSubmit">Search</v-btn>
-    </v-layout>
   </v-form>
 </template>
 
