@@ -30,6 +30,8 @@ export default {
       movieList: 'movieSearchList'
     })
   },
-  methods: mapActions("data", ["searchMovies"])
+  methods: {
+    ...mapActions("data", ["searchMovies"])
+  }
 };
 </script>
