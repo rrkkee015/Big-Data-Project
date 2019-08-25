@@ -19,6 +19,7 @@
 import { mapState, mapActions } from "vuex";
 import MovieSearchForm from "../MovieSearchForm";
 import MovieList from "../MovieList";
+
 export default {
   components: {
     MovieList,

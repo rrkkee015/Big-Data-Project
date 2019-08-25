@@ -40,9 +40,9 @@
     >
       <MovieDetail 
         :title="title"
-        :viewCount="viewCount"
-        :genresStr="genresStr"
-        :averageRating="averageRating"
+        :view-count="viewCount"
+        :genres-str="genresStr"
+        :average-rating="averageRating"
         :users="users"
         @turnOff="dialog=false"
       />

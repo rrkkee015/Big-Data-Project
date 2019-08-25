@@ -11,8 +11,8 @@
           :img="card.img"
           :title="card.title"
           :genres="card.genres"
-          :averageRating="card.averageRating"
-          :viewCount="card.viewCount"
+          :average-rating="card.averageRating"
+          :view-count="card.viewCount"
           :users="card.users"
         />
       </v-flex>
