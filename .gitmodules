@@ -1,0 +1,3 @@
+[submodule "bigdata-sub3_backend"]
+	path = bigdata-sub3_backend
+	url = https://lab.ssafy.com/HyehuiLee/bigdata-sub3_backend.git

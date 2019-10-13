@@ -1,83 +1,81 @@
 <template>
   <v-app id="app">
-    <v-app-bar app clipped-left color="indigo">
-      <v-app-bar-nav-icon class="white--text" @click="drawer = !drawer" />
-      <span class="title ml-3 mr-5 white--text">영화 추천 서비스</span>
-      <v-spacer />
-    </v-app-bar>
-
-    <v-navigation-drawer v-model="drawer" app clipped color="grey lighten-4">
-      <v-list dense class="grey lighten-4">
-        <template v-for="(choice, i) in choices">
-          <v-list-item
-            :key="i"
-            @click="() => {
-              if (choice.path) {
-                goTo(choice.path)
-              }
-            }"
-          >
-            <v-list-item-action>
-              <v-icon>{{ choice.icon }}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title class="subtitle-2 font-weight-bold black--text">{{ choice.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </template>
-      </v-list>
-    </v-navigation-drawer>
-
-    <v-content>
-      <v-container fluid fill-height class="grey lighten-4">
-        <v-layout justify-center align-center>
-          <!-- each pages will be placed here -->
-          <router-view />
-        </v-layout>
-      </v-container>
-    </v-content>
+    <v-container fluid fill-height class="black fira-sans pa-0">
+      <NavigationDrawer />
+      <v-snackbar
+        v-model="infoSnackbarShow"
+        :timeout=timeout
+        color="#E50914"
+      >
+        If you want to be recommended, <br>
+        please fill in your profile.
+        <v-btn
+          text
+          @click="goToWithParams('profile-setting', user.nickname)"
+        >
+          Go
+        </v-btn>
+      </v-snackbar>
+      <v-layout justify-center align-center style="overflow: hidden;">
+        <transition
+          name="fade"
+          mode="out-in"
+        >
+          <router-view/>
+        </transition>
+      </v-layout>
+    </v-container>
   </v-app>
 </template>
 
 <script>
-import router from "./router";
+import { mapState } from "vuex";
+import router from "./router"
+import NavigationDrawer from "./components/Common/NavigationDrawer";
 
 export default {
-  data: () => ({
-    drawer: null,
-    choices: [
-      {
-        icon: "mdi-home",
-        text: "홈",
-        path: "home"
-      },
-      {
-        icon: "mdi-movie",
-        text: "영화 검색",
-        path: "movie-search"
-      },
-      {
-        icon: "mdi-library-movie",
-        text: "장르 검색",
-        path: "genre-search"
-      },
-      {
-        icon: "mdi-account",
-        text: "유저",
-        path: "accounts"
-      }
-    ]
-  }),
-  methods: {
-    goTo: function(path) {
-      router.push({ name: path });
+  components: {
+    NavigationDrawer,
+  },
+  data() {
+    return {
+      timeout: 0
     }
+  },
+  computed: {
+    ...mapState({
+      infoSnackbarShow: state => state.entrance.infoSnackbarShow
+    }),
+    user() {
+      if (this.$store.getters['auth/profileUser']) {
+        return this.$store.getters['auth/profileUser']
+      } else {
+        return {}
+      }
+    }
+  },
+  methods: {
+    goToWithParams: function(path, params) {
+			router.push({ name: path, params:{ nickname: params} });
+    },
   }
 };
 </script>
 
 <style>
-#keep .v-navigation-drawer__border {
-  display: none;
-}
+  .fade-enter-active,
+  .fade-leave-active {
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    transition-timing-function: ease;
+  }
+
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0
+  }
+
+  .fira-sans {
+    font-family: 'Fira Sans', sans-serif;
+  }
 </style>
