@@ -15,11 +15,15 @@ Hey &Nerd의 데이터베이스는 수백만 편의 영화와 출연진과 제�
 - Django 2.1.7, Django REST Framework
 - Sqlite3
 - Vue 3.8.4, Vuex, Vue-router
+
+![](./README_IMAGE/Skill.png)
 ## 3. 서비스 배포 환경
   - FrontEnd : AWS S3
   - BackEnd : AWS EC2
   - DataBase : AWS RDS
   - Algorithm : AWS Lambda
+
+  ![](./README_IMAGE/Service_Architecture.png)
 ## 4. 서비스 개요
 - 영화를 추천받기 위해서 회원 정보를 등록한 후 웹 서비스를 통해 영화를 추천 받으면 됩니다. 회원 정보를 등록하기 전엔 무작위의 영화를 추천 받으며, 회원 정보를 등록하면, 회원 맞춤별 영화를 추천해줍니다.
 - 혹은 영화를 API를 활용하여 받을 수 있습니다. API Document는 `http://52.78.2.29/swagger/`에서 확인할 수 있습니다.
@@ -40,7 +44,7 @@ Hey &Nerd의 데이터베이스는 수백만 편의 영화와 출연진과 제�
 ## 6. 서비스 아케텍처
 - ERD model (사용한 프로그램 : https://dbdiagram.io/)
 
-  ![](./ERD_Model.png)
+  ![](./README_IMAGE/ERD_Model.png)
 - 관리자 페이지 (/admin): 관리자는 유저들의 정보를 확인할 수 있으며, Algorithm의 인자를 변경할 권한이 있습니다.
 - 회원가입, 로그인, 로그아웃, 프로필 수정, 영화 평점 남기기가 가능합니다.
 - 회원가입 및 로그인시 비밀번호는 Django Framework 기본 기능으로 모두 암호화가 되며, 데이터베이스에 기록되는 모든 정보는 Django ModelForm을 통해 유효성을 검사합니다.
@@ -50,6 +54,8 @@ Hey &Nerd의 데이터베이스는 수백만 편의 영화와 출연진과 제�
   - 영화 : 365,454편 (1894년 ~ 2019년)
   - 유저 : 6,056명
   - 평점 : 882,055개
+
+  ![](./README_IMAGE/Total_data.png)
 - **팀원 정보 및 업무 분담 내역**
 ```
 - 이혜희 : 팀장, Vue, HTML, CSS를 이용한 프론트엔드
